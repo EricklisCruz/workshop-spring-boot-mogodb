@@ -5,6 +5,7 @@ import com.syudyprojects.demo.dto.UserDTO;
 import com.syudyprojects.demo.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,5 +27,11 @@ public class UserResource {
         List<User> users = userService.findAll();
         List<UserDTO> usersDTO = users.stream().map(user -> new UserDTO(user)).collect(Collectors.toList());
         return ResponseEntity.ok().body(usersDTO);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<UserDTO> findByUserId(@PathVariable String id) {
+        User user = userService.findById(id);
+        return ResponseEntity.ok().body(new UserDTO(user));
     }
 }
