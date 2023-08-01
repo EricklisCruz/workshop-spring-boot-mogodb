@@ -1,5 +1,6 @@
 package com.syudyprojects.demo.resources;
 
+import com.syudyprojects.demo.domain.entities.Post;
 import com.syudyprojects.demo.domain.entities.User;
 import com.syudyprojects.demo.dto.UserDTO;
 import com.syudyprojects.demo.services.UserService;
@@ -34,6 +35,12 @@ public class UserResource {
         return ResponseEntity.ok().body(new UserDTO(user));
     }
 
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User user = userService.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
+    }
+
     @PostMapping
     public ResponseEntity<User> insertUser(@RequestBody UserDTO userDTO, UriComponentsBuilder uriComponentsBuilder) {
         User user = userService.fromDTO(userDTO);
@@ -55,4 +62,5 @@ public class UserResource {
         userService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
 }
