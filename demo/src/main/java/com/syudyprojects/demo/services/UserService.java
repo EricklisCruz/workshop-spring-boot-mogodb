@@ -31,8 +31,12 @@ public class UserService {
     }
 
     public void delete(String id) {
-        findById(id);
-        userRepository.deleteById(id);
+        Boolean find = userRepository.existsById(id);
+        if (find) {
+            userRepository.deleteById(id);
+        }
+        throw new ObjectNotFoundException("User not found!");
+
     }
 
     public User fromDTO(UserDTO userDTO) {
