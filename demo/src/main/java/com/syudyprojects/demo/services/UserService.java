@@ -30,6 +30,16 @@ public class UserService {
         return userRepository.insert(user);
     }
 
+    public User update(String id, User user) {
+        try {
+            User entity = userRepository.findById(id).get();
+            updateDate(entity, user);
+            return userRepository.save(entity);
+        } catch (RuntimeException e) {
+            throw new ObjectNotFoundException(e.getMessage());
+        }
+    }
+
     public void delete(String id) {
         Boolean find = userRepository.existsById(id);
         if (find) {
@@ -37,6 +47,11 @@ public class UserService {
         }
         throw new ObjectNotFoundException("User not found!");
 
+    }
+
+    private void updateDate(User entity, User user) {
+        entity.setName(user.getName());
+        entity.setEmail(user.getEmail());
     }
 
     public User fromDTO(UserDTO userDTO) {
