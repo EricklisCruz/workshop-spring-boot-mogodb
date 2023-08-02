@@ -3,6 +3,7 @@ package com.syudyprojects.demo.config;
 import com.syudyprojects.demo.domain.entities.Post;
 import com.syudyprojects.demo.domain.entities.User;
 import com.syudyprojects.demo.dto.AuthorDTO;
+import com.syudyprojects.demo.dto.CommentDTO;
 import com.syudyprojects.demo.repositories.PostRepository;
 import com.syudyprojects.demo.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -56,5 +57,14 @@ public class Instantiation implements CommandLineRunner {
 
         maria.getPosts().addAll(Arrays.asList(post1, post2));
         userRepository.save(maria);
+
+        CommentDTO comment1 = new CommentDTO("Boa viagem, mano!", sdf.parse("21/03/3018"), new AuthorDTO(alex));
+        CommentDTO comment2 = new CommentDTO("Aproveite", sdf.parse("22/03/3018"), new AuthorDTO(bob));
+        CommentDTO comment3 = new CommentDTO("Tenha um ótimo dia", sdf.parse("23/03/3018"), new AuthorDTO(alex));
+
+        post1.getComments().addAll(Arrays.asList(comment1, comment2));
+        post2.getComments().addAll(Arrays.asList(comment3));
+        postRepository.saveAll(Arrays.asList(post1, post2));
+
     }
 }

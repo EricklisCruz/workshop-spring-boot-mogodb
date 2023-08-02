@@ -1,6 +1,7 @@
 package com.syudyprojects.demo.domain.entities;
 
 import com.syudyprojects.demo.dto.AuthorDTO;
+import com.syudyprojects.demo.dto.CommentDTO;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -28,6 +29,8 @@ public class Post implements Serializable {
     private String body;
 
     private AuthorDTO author;
+
+    private List<CommentDTO> comments = new ArrayList<>();
 
     public Post(Date date, String title, String body, AuthorDTO author) {
         this.date = date;
