@@ -5,6 +5,8 @@ import com.syudyprojects.demo.repositories.PostRepository;
 import com.syudyprojects.demo.services.exceptions.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PostService {
 
@@ -17,5 +19,9 @@ public class PostService {
     public Post findPostById(String id) {
         return postRepository.findById(id).orElseThrow(
                 () -> new ObjectNotFoundException("Post not found!!"));
+    }
+
+    public List<Post> findPostByTitle(String text) {
+        return postRepository.findByTitleContainingIgnoreCase(text);
     }
 }
