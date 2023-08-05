@@ -24,10 +24,10 @@ git clone git@github.com:EricklisCruz/workshop-spring-boot-mogodb.git
   
 | VERBO | ENDPOINT |
 | ----- | ---------|
-| GET   | localhost:8080/users/ |
+| GET   | localhost:8080/users |
 | GET   | localhost:8080/users/{id} |
 | GET     | localhost:8080/users/{id}/posts |
-| POST    | localhost:8080/users/ |
+| POST    | localhost:8080/users |
 | PUT    | localhost:8080/users/{id} |
 | DELETE    | localhost:8080/users/{id} |
 
@@ -35,6 +35,6 @@ git clone git@github.com:EricklisCruz/workshop-spring-boot-mogodb.git
   
 | VERBO | ENDPOINT |
 | ----- | -------- |
-| GET     | localhost:8080/posts/ |
-| GET     | localhost:8080/posts//titlesearch |
-| GET     | localhost:8080/users//fullsearch |
+| GET     | localhost:8080/posts |
+| GET     | localhost:8080/posts/titlesearch |
+| GET     | localhost:8080/users/fullsearch |
